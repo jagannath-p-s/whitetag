@@ -12,7 +12,7 @@ import { supabase } from '../../supabaseClient';
 
 // Define the FieldWithSwitch component
 const FieldWithSwitch = ({ name, label, placeholder, value, onChange, visibilityState, handleSwitchChange }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
+  <div className="grid grid-cols-1 gap-2 items-center sm:grid-cols-2">
     <div>
       <Label htmlFor={name}>{label}</Label>
       <Input
@@ -21,10 +21,10 @@ const FieldWithSwitch = ({ name, label, placeholder, value, onChange, visibility
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="py-3 px-4 border border-gray-300 rounded-lg w-full"
+        className="py-2 px-3 border border-gray-300 rounded-lg w-full"
       />
     </div>
-    <div className="flex items-center space-x-2 mt-6">
+    <div className="flex items-center space-x-2 mt-2">
       <Switch
         id={`${name}_visibility`}
         checked={visibilityState[`${name}_visibility`]} // Use visibility state
@@ -43,21 +43,21 @@ const PetForm = React.memo(({ currentPet, handleInputChange, handleFileUpload, u
         placeholder="Unique Username"
         value={currentPet.pet_unique_username}
         onChange={handleInputChange}
-        className="py-3 px-4 border border-gray-300 rounded-lg"
+        className="py-2 px-3 border border-gray-300 rounded-lg"
       />
       <Input
         name="pet_name"
         placeholder="Pet Name"
         value={currentPet.pet_name}
         onChange={handleInputChange}
-        className="py-3 px-4 border border-gray-300 rounded-lg"
+        className="py-2 px-3 border border-gray-300 rounded-lg"
       />
       <Input
         name="mobile_number"
         placeholder="Mobile Number"
         value={currentPet.mobile_number}
         onChange={handleInputChange}
-        className="py-3 px-4 border border-gray-300 rounded-lg"
+        className="py-2 px-3 border border-gray-300 rounded-lg"
       />
       <div>
         <Label htmlFor="pet_image">Pet Image</Label>
@@ -67,7 +67,7 @@ const PetForm = React.memo(({ currentPet, handleInputChange, handleFileUpload, u
           accept="image/*"
           onChange={handleFileUpload}
           disabled={uploading}
-          className="py-3 px-4 border border-gray-300 rounded-lg"
+          className="py-2 px-3 border border-gray-300 rounded-lg"
         />
         {uploading && <p>Uploading...</p>}
         {imagePreview && (
@@ -86,7 +86,7 @@ const PetForm = React.memo(({ currentPet, handleInputChange, handleFileUpload, u
           placeholder="Description"
           value={currentPet.description}
           onChange={handleInputChange}
-          className="py-3 px-4 border border-gray-300 rounded-lg"
+          className="py-2 px-3 border border-gray-300 rounded-lg"
         />
         <div className="flex items-center space-x-2 mt-2">
           <Switch
@@ -307,7 +307,7 @@ const PetProfileManager = () => {
       ) : pets.length === 0 ? (
         <p>You don't have any pets yet. Add your first pet below!</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {pets.map((pet) => (
             <Card key={pet.id}>
               <CardHeader>
@@ -411,7 +411,7 @@ const PetProfileManager = () => {
               handleSwitchChange={handleSwitchChange}
             />
           </div>
-          <div className="flex justify-end gap-2 sticky bottom-0 bg-white py-2 px-4">
+          <div className="flex justify-end gap-2  bottom-0 bg-white py-2 px-4">
             <Button variant="outline" onClick={resetForm}>
               <X className="mr-2 h-4 w-4" /> Cancel
             </Button>
