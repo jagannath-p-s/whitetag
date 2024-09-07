@@ -11,6 +11,7 @@ const PetProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAddress, setShowAddress] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
 
   useEffect(() => {
     const fetchPetData = async () => {
@@ -257,6 +258,8 @@ END:VCARD`;
               </motion.div>
             )}
 
+          
+
             {petData.gallery_visibility && petData.gallery && (
               <motion.div
                 className="flex items-center justify-between bg-gray-100 p-3 rounded-lg mb-3 shadow-sm"
@@ -276,6 +279,37 @@ END:VCARD`;
                 >
                   <OpenInNewIcon />
                 </motion.button>
+              </motion.div>
+            )}
+              {petData.description_visibility && petData.description && (
+              <motion.div
+                className="mb-3"
+                variants={animationVariants}
+              >
+                <motion.button
+                  className="flex items-center justify-between w-full bg-gray-100 p-3 rounded-lg shadow hover:bg-gray-200"
+                  onClick={() => setShowDescription(!showDescription)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center">
+                    <div className="bg-blue-200 p-2 rounded-lg mr-3">
+                      <AccountCircle className="text-blue-500" />
+                    </div>
+                    <span>Description</span>
+                  </div>
+                </motion.button>
+                {showDescription && (
+                  <motion.div
+                    className="mt-2 p-3 bg-gray-50 rounded-lg shadow-sm"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {petData.description}
+                  </motion.div>
+                )}
               </motion.div>
             )}
           </div>
